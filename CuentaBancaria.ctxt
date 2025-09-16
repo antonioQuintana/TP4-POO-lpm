@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=CuentaBancaria
+comment0.text=\r\n\ Clase\ que\ permite\ depositar\ y\ extraer\ saldo\r\n\ \r\n\ @author\ Pannunzio\ M.\ Nicolas\ -\ Quintana\ Antonio\ \ \r\n\ @version\ 24/08/25\r\n
+comment1.params=p_nroCuenta
+comment1.target=void\ setNroCuenta(int)
+comment2.params=p_saldo
+comment2.target=void\ setSaldo(double)
+comment3.params=
+comment3.target=int\ getNroCuenta()
+comment4.params=
+comment4.target=double\ getSaldo()
+comment5.params=p_importe
+comment5.target=double\ depositar(double)
+comment5.text=\r\n\ Permite\ agregar\ importe\ al\ saldo\ actual\r\n\ @param\ importe\ que\ se\ sumara\ al\ saldo\ actual\r\n\ @return\ el\ nuevo\ saldo.\r\n
+comment6.params=p_importe
+comment6.target=double\ extraer(double)
+comment6.text=\r\n\ Permite\ extraer\ un\ importe\ del\ saldo.\r\n\ @param\ Cantidad\ que\ se\ restara\ del\ saldo.\r\n\ @return\ El\ nuevo\ saldo.\r\n
+comment7.params=
+comment7.target=void\ mostrar()
+comment7.text=\r\n\ Muestra\ el\ estado\ de\ los\ atributos\r\n
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment8.text=\r\n\ Concatena\ y\ devuelve\ los\ estados\ de\ los\ atributos\r\n\ @return\ NroCuenta\ +\ titular\ +\ saldo.\r\n
+numComments=9

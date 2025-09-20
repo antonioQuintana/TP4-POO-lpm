@@ -43,7 +43,7 @@ public class GestionComercio{
         System.out.println("\n Ingrese el CUIL del empleado a dar de baja: ");
         long cuilBaja = teclado.nextLong();
         miComercio.bajaEmpleado(cuilBaja);
-        System.out.println(" El empleado se dio de baja? --> " + miComercio.esEmpleado(cuilBaja));
+        System.out.println(" El empleado con el CUIL: "+ cuilBaja +" es parte del comercio? --> " + miComercio.esEmpleado(cuilBaja));
 
         // Mostrar nomina actualizada
         System.out.println("\nCantidad de empleados luego de la baja: " + miComercio.cantidadDeEmpleados());

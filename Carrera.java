@@ -12,7 +12,7 @@ public class Carrera{
         //5.1.1. Crear un curso y varios Alumnos
         Scanner teclado = new Scanner(System.in);
         teclado.useDelimiter("\n");
-
+       
         System.out.println("Ingrese el nombre del curso:");
         String nombreCurso = teclado.nextLine();
         Curso unCurso = new Curso(nombreCurso);
@@ -50,10 +50,14 @@ public class Carrera{
         //5.1.5. Dar de baja un alumno y luego verifico que no este mas inscripto.
         System.out.println("Ingrese el numero de libreta del alumno a dar de baja:");
         int p_lu = teclado.nextInt();
+        
+        if(unCurso.estaInscripto(p_lu)){
         unCurso.quitarAlumno(p_lu);
         System.out.println("****-- Se da de baja al alumno con LU " + p_lu + " --****");
         System.out.println("Esta inscripto ?? -->" + unCurso.estaInscripto(p_lu));
-
+        }else{
+            System.out.println("*** No se encontro un alumno inscripto con ese LU ***");
+        }
         //5.1.6. Imprimir nuevamente la cantidad y lista de alumnos inscriptos
         System.out.println("****-- Alumnos inscriptos actualmente: " + unCurso.cantidadDeAlumnos());
         unCurso.mostrarInscriptos();

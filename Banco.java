@@ -125,7 +125,7 @@ public class Banco
         System.out.println("Banco: "+this.getNombre()+"\t Sucursal: "+this.getNroSucursal());
         System.out.println("Localidad: "+this.getLocalidad().getNombre()+"\t Provincia: "+this.getLocalidad().getProvincia());
         this.listarSueldos();
-        System.out.println("\nTotal a Pagar ---------------------------- $ "+ this.sueldosAPagar());
+        System.out.printf("\nTotal a Pagar ---------------------------- $ %.2f \n", this.sueldosAPagar());
     }
     //Nuevos metodos ejercicio 4
     /**
@@ -172,6 +172,7 @@ public class Banco
         }
         return titulares;
     }
+    
     /**
      * Cuenta la cantidad de cuentas con saldo mayor a cero
      * @return la cantidad de cuentas con saldo mayor a cero

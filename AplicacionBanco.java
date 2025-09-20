@@ -29,6 +29,8 @@ public class AplicacionBanco
         teclado.useDelimiter("\n");
         int opcion;
         ArrayList<Banco> bancos = new ArrayList();
+        
+
         do{
             System.out.println("Menu de Principal: ");
             System.out.println("1. Crear Banco"); 
@@ -134,7 +136,7 @@ public class AplicacionBanco
                 ArrayList<CuentaBancaria> cuentas = new ArrayList();
                 do{
                     System.out.println("Ingrese una cuenta bancaria: ");
-                    CuentaBancaria cuenta = crearCuentaBancaria(teclado);
+                    CuentaBancaria cuenta = crearCuentaBancaria(teclado, null); // no hay p_banco creado para pasar por parametro aun
                     cuentas.add(cuenta);
                     System.out.println("Desea agregar mas cuentas bancarias? (s/n): ");
                     respuesta = teclado.next();
@@ -220,7 +222,8 @@ public class AplicacionBanco
                     break;
                 case 3:
                     //Agregar cuenta bancaria
-                    p_banco.agregarCuentaBancaria(crearCuentaBancaria(teclado));
+                    
+                    p_banco.agregarCuentaBancaria(crearCuentaBancaria(teclado, p_banco));
                     System.out.println("Cuenta bancaria agregada con exito.");  
                     break;
                 case 4:
@@ -265,15 +268,47 @@ public class AplicacionBanco
      * @param teclado Scanner para leer los datos por teclado
      * @return retorna una cuenta bancaria creada
      */
-    private static CuentaBancaria crearCuentaBancaria(Scanner teclado){
-        System.out.println("Ingrese numero de cuenta: ");
-        int nroCuenta = teclado.nextInt();
-        System.out.println("Ingrese saldo inicial: ");
-        double saldo = teclado.nextDouble();
-        System.out.println("Ingrese datos del titular: ");
-        Persona titular = crearPersona(teclado);
+    private static CuentaBancaria crearCuentaBancaria(Scanner teclado, Banco p_banco){
         
-        return new CuentaBancaria(nroCuenta, titular, saldo);
+        System.out.println("Desea usar un titular existente? (s/n):");
+        String respuesta = teclado.next();
+        if(respuesta.equalsIgnoreCase("s")){
+            Persona titular = null;
+
+            System.out.println("Ingrese DNI del titular existente: ");
+            int dni = teclado.nextInt();
+
+            //Buscar titular en las cuentas existentes
+            for(CuentaBancaria unaCuenta: p_banco.getCuentasBancarias()){
+                System.out.println("entro");
+                if(unaCuenta.getTitular().getDNI() == dni){
+                    System.out.println("Esta adentro");
+                    titular = unaCuenta.getTitular();
+                    break;
+                }
+            }
+            if(titular == null){
+                System.out.println("No se encontro un titular con ese DNI.");
+                return null;
+            }else{
+                System.out.println("Titular encontrado: " + titular.apeYNom());
+                System.out.println("Ingrese numero de cuenta: ");
+                int nroCuenta = teclado.nextInt();
+                System.out.println("Ingrese saldo inicial: ");
+                double saldo = teclado.nextDouble();
+                return new CuentaBancaria(nroCuenta, titular, saldo);
+            }
+
+        }else{
+            System.out.println("Ingrese numero de cuenta: ");
+            int nroCuenta = teclado.nextInt();
+            System.out.println("Ingrese saldo inicial: ");
+            double saldo = teclado.nextDouble();
+            System.out.println("Ingrese datos del titular: ");
+            Persona titular = crearPersona(teclado);
+        
+            return new CuentaBancaria(nroCuenta, titular, saldo);
+        }
     }
     /**
      * Crea una persona solicitando los datos por teclado
